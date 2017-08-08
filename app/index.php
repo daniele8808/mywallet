@@ -1,7 +1,7 @@
 <?php  
 	// è molto impo che il tag php cominci dalla prima riga, altrimenti il redirect alla home dopo aver aggiunto o rimosso una voce non funziona -> header('Location: .'); 
 	try {
-		$pdo = NEW PDO('mysql:host=localhost; dbname=mywallet2', 'root', 'root'); 
+		$pdo = NEW PDO('mysql:host=localhost; dbname=mywallet', 'root', 'root'); 
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	    $pdo->exec('SET NAMES "utf8"');
 	} catch (PDOException $e) {

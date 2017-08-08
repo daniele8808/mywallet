@@ -20,7 +20,7 @@
 			<input type="text" name="costo" id="costo">
 			<br>
 			<label for="id_categoria">A quale categoria apprtiene questa spesa:</label>
-			<select multiple name="idcategoria" id="idcategoria">
+			<select name="idcategoria" id="idcategoria">
 			<?php foreach($categorie as $categoria): ?>
 				<option value="<?php echo htmlspecialchars($categoria['id'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($categoria['categoria'], ENT_QUOTES, 'UTF-8'); ?></option>
 			<?php endforeach ?>
