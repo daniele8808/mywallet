@@ -10,37 +10,6 @@
 		exit();
 	}	
 
-
-	//$output = 'Connessione al database stabilita';
-	//include 'output.html.php';
-
-	/* creazione di una tabella	
-		try {
-			$sql = 'CREATE TABLE mywallet (
-					id  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-					mwdescription TEXT,
-					mwdate DATE NOT NULL
-					) DEFAULT CHARACTER SET utf8 ENGINE=InnoDB';
-			$pdo->exec($sql);
-			
-		} catch (PDOException $e) {
-			$output = 'Errore nella creazione della tabella '. $e->getMessage();
-			include 'output.html.php';
-			exit();
-		}
-		$output = 'Tabella creata correttamente';
-		include 'output.html.php';
-
-
-		CREATE TABLE categorie (
-	    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	    categoria varchar(255),
-	    tag varchar(255)
-	    ) DEFAULT CHARACTER SET utf8 ENGINE=INNODB
-
-	*/
-	
-
 	//CANCELLA COSTI E CATEGORIE
 	if (isset($_GET['cancella_costo'])) {
 	try {
@@ -61,7 +30,8 @@
 	if (isset($_GET['cancella_categoria'])) 
 	{
 	try {
-		$sql = 'DELETE FROM categorie WHERE id = :id';
+		//$sql = 'DELETE FROM categorie WHERE id = :id; DELETE FROM costi WHERE id = idcategoria';
+		$sql = 'DELETE categorie, costi FROM categorie, costi WHERE categorie.id = costi.idcategoria AND categorie.id = :id';
 		$s = $pdo->prepare($sql);
 		$s->bindValue(':id', $_POST['id']);
 		$s->execute();
@@ -75,8 +45,7 @@
 	}
 
 
-
-	// INSERISCE NEI DB NUOVI COSTI E CATEGORIE
+	// INSERISCE NEI DB NUOVI COSTI 
 	if (isset($_POST['descrizione']) && isset($_POST['costo']) && isset($_POST['idcategoria'])) {
 		try{
 			$sql = 'INSERT INTO costi SET 
@@ -97,12 +66,15 @@
 		header('Location: .');
 		exit();
 	} 
-
+	
+	// INSERISCE NEI DB NUOVE CATEGORIE
 	if (isset($_POST['categoria'])) {
 		try{
 			$sql = 'INSERT INTO categorie SET 
 			categoria = :categoria,
-			tag = :categoria';
+			tag = :categoria;
+			INSERT INTO costicategorie SET
+			idcategoria = last_insert_id()';
 			$s = $pdo->prepare($sql);
 			$s->bindValue(':categoria', $_POST['categoria']);
 			$s->execute();
@@ -111,7 +83,7 @@
 			include 'error.html.php';
 			exit();
 		}
-		header('Location: .');
+		header('Location: ?aggiungi_costo');
 		exit();
 	}
 	
@@ -131,7 +103,7 @@
 	}
 
 	try {
-		$sql = 'SELECT costi.id, costo, descrizione, categoria FROM costi INNER JOIN categorie ON idcategoria = categorie.id';
+		$sql = 'SELECT costi.id, costo, descrizione, categoria FROM costi INNER JOIN categorie ON idcategoria = categorie.id; ';
 		$result = $pdo->query($sql);
 	} catch (PDOException $e) {
 		$error = 'errore nel recupero del dato '. $e->getMessage();
@@ -163,9 +135,4 @@
 		exit();
 	}
 	
-	if (isset($_GET['aggiungi_categoria'])){
-		include 'aggiungi_categoria.php';
-		exit();
-	}
-
 	include 'review.html.php';

@@ -17,4 +17,6 @@ SQL
 - INSERT INTO `categorie`(`id`, `categoria`, `tag`) VALUES ('2','regali','regali') --> aggiunge una riga ad una tabella
 - INNER JOIN -> unisce i risultati di più tabelle es -> SELECT joke.id, LEFT(joketext, 20), name, email FROM joke INNER JOIN author ON authorid = author.id --> prende i dati di due tabelle e li unisce in un
   unico risultato (quando ci sono colonne simili si silezionano con il prefisso della tabelle davanti --> joke.id). l'ON unisce infine la colonna della prima tabella "authorid" con la colonna della secona author.id 
-- 
+- INSERT INTO costicategorie (idcategoria) SELECT id FROM categorie WHERE id = '46' -> insert a value in a table taking a value from another table;
+
+
