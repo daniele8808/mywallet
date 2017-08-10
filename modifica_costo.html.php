@@ -24,7 +24,7 @@
 			<input type="text" id="descrizione" name="descrizione" placeholder="<?php echo htmlspecialchars($row['descrizione'], ENT_QUOTES, 'UTF-8'); ?>">
 			<br>
 			<label for="costo">Aggiungi l'importo della tua spesa</label>
-			<input type="text" name="costo" id="costo" placeholder="<?php echo htmlspecialchars($row['costo'], ENT_QUOTES, 'UTF-8'); ?>">
+			<input type="number" name="costo" id="costo" placeholder="<?php echo htmlspecialchars($row['costo'], ENT_QUOTES, 'UTF-8'); ?>">
 			<input type="hidden" value="<?php echo $row['id'] ?>" name="id">
 			<input type="hidden" value="<?php echo $row['idcategoria'] ?>" name="idcategoria">
 			<br>

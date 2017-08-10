@@ -130,7 +130,6 @@
 		} 
 	}
 
-
 	// INSERISCE NUOVE CATEGORIE
 	if (isset($_GET['aggiungi_categoria'])) {
 		if (isset($_POST['categoria'])) {
@@ -183,7 +182,7 @@
 	}
 
 	try {
-		$sql = 'SELECT costi.id, costo, descrizione, categoria 
+		$sql = 'SELECT costi.id, costo, descrizione, categoria, tempo 
 				FROM costi 
 				INNER JOIN categorie 
 				ON idcategoria = categorie.id; ';
@@ -208,7 +207,8 @@
 			"id"=>$row['id'],
 			"costo"=>$row['costo'],
 			"descrizione"=>$row['descrizione'],
-			"categoria"=>$row['categoria']
+			"categoria"=>$row['categoria'],
+			"tempo"=>$row['tempo']
 		);
 	}
 	

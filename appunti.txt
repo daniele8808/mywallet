@@ -4,6 +4,7 @@ PHP
 - il metofo "query" restituisce un ogetto PDO Statement che rappresenta una serie di risultati "return set" contenente le righe restituite.
 - è molto impo che il tag php cominci dalla prima riga, altrimenti il redirect alla home dopo aver aggiunto o rimosso una voce non funziona -> header('Location: .'); 
 - per recuperare un valore inviato da un Form, si possono usare tre funzioni: $_GET, $_POST e $_REQUEST. Quest' ultima è una via di mezzo tra GET e POST
+- GLOBAL $pdo -> o il nome di un'altra qualsiasi variabile globale permette di importare all'interno di una funzione una variabile globale 
 
 SQL
 - CURRENT_TIMESTAMP() -> prende la data odierna

@@ -6,7 +6,7 @@
 		table, th, td { border: 1px solid black; border-collapse: collapse;}
 		th, td { padding: 5px; text-align: left;}
 		.none{display: none}
-		th.a {width:200px;}
+		th.a {width:300px;}
 		.inline {display: inline-block; margin-right: 20px;}
 		.left {float: left;}
 		.right {float: right;}
@@ -16,12 +16,21 @@
 <body>
 
 <p>ECCO LE SPESE DELLA GIORNATA:</p>
-	<?php foreach ($costi as $costo): ?>
-		<table style="width:50%">
+		<table style="width:70%">
 		<tr>
+			<th class="a">DESCRIZIONE</th>
+			<th class="a">COSTO</th>
+			<th class="a">CATEGORIA</th>
+			<th class="a">DATA</th>
+			<th class="a">---</th>
+			<th class="a">---</th>
+		</tr>
+		<tr>
+			<?php foreach ($costi as $costo): ?>
 			<th class="a"><?php echo htmlspecialchars($costo['descrizione'], ENT_QUOTES, 'UTF-8'); ?></th>
 			<th class="a"><?php echo htmlspecialchars($costo['costo'], ENT_QUOTES, 'UTF-8'); ?></th>
 			<th class="a"><?php echo htmlspecialchars($costo['categoria'], ENT_QUOTES, 'UTF-8'); ?></th>
+			<th class="a"><?php echo htmlspecialchars($costo['tempo'], ENT_QUOTES, 'UTF-8'); ?></th>
 			<form action="?cancella_costo" method="POST">
 			<th class="none"><input type="hidden" value="<?php echo $costo['id'] ?>" name="id"></th>
 			<th><input type="submit" value="cancella"></th>
@@ -32,8 +41,9 @@
 			</form>
 			<!-- <th><button name="action" value="update">Modifica</button></th> -->
 		</tr>
+	    <?php endforeach; ?>
+
 		</table>
-    <?php endforeach; ?>
 
 
 	<p>ECCO LE CATEGORIE ESISTENTI:</p>

@@ -33,7 +33,7 @@
 			<input type="text" id="descrizione" name="descrizione"> 
 			<br>
 			<label for="costo">Aggiungi l'importo della tua spesa</label>
-			<input type="text" name="costo" id="costo">
+			<input type="number" name="costo" id="costo">
 			<br>
 
 
