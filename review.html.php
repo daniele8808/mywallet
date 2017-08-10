@@ -15,24 +15,25 @@
 </head>
 <body>
 
-<div class="">
 <p>ECCO LE SPESE DELLA GIORNATA:</p>
 	<?php foreach ($costi as $costo): ?>
 		<table style="width:50%">
-		<form action="?cancella_costo" method="POST" >
 		<tr>
 			<th class="a"><?php echo htmlspecialchars($costo['descrizione'], ENT_QUOTES, 'UTF-8'); ?></th>
 			<th class="a"><?php echo htmlspecialchars($costo['costo'], ENT_QUOTES, 'UTF-8'); ?></th>
 			<th class="a"><?php echo htmlspecialchars($costo['categoria'], ENT_QUOTES, 'UTF-8'); ?></th>
+			<form action="?cancella_costo" method="POST">
 			<th class="none"><input type="hidden" value="<?php echo $costo['id'] ?>" name="id"></th>
 			<th><input type="submit" value="cancella"></th>
+			</form>
+			<form action="?modifica_costo" method="POST">
+			<th class="none"><input type="hidden" value="<?php echo $costo['id'] ?>" name="id"></th>
+			<th><input type="submit" value="modifica"></th>
+			</form>
 			<!-- <th><button name="action" value="update">Modifica</button></th> -->
 		</tr>
-					
-		</form>
 		</table>
     <?php endforeach; ?>
-</div>
 
 
 	<p>ECCO LE CATEGORIE ESISTENTI:</p>
@@ -40,7 +41,7 @@
 		<table style="width:10%">
 			<form action="?cancella_categoria" method="post" >
 			<tr>
-			<th class="a"><?php   echo htmlspecialchars($categoria['categoria'], ENT_QUOTES, 'UTF-8'); ?></th>
+			<th class="a"><?php echo htmlspecialchars($categoria['categoria'], ENT_QUOTES, 'UTF-8'); ?></th>
 			<th class="none"><input type="hidden" value="<?php  echo $categoria['id'] ?>" name="id"></th>
 			<th><input type="submit" value="cancella"></th>
 			</tr>
@@ -52,7 +53,6 @@
 <p><a href="?aggiungi_costo">AGGIUNGI SPESA</a></p>
 </div>
 
-
-
+<?php include $_SERVER['DOCUMENT_ROOT'] . $root . '/includes/footer.inc.php' ?>
 </body>
 </html>

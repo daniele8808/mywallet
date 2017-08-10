@@ -10,17 +10,16 @@
 <body>			
 
 
-	<a href="?">Torna indietro</a>
 	<h4>AGGIUNGI CATEGORIA</h4>
 
-	<form action="?" method="POST">	
+	<form action="?aggiungi_categoria" method="POST">	
 		<label for="categoria">Se occorre aggiungi una nuova categoria</label>
 		<input type="text" id="categoria" name="categoria"> 
 		<input type="submit" value="Aggiungi">
 	</form>
-	<br><br>
+	<br>
 	<h4>AGGIUNGI SPESA</h4>
-	<form action="?" method="post">
+	<form action="?aggiungi_costo" method="post">
 		<div>
 			<label for="id_categoria">A quale categoria apprtiene questa spesa:</label>
 			<select name="idcategoria" id="idcategoria">
@@ -30,8 +29,6 @@
 			<?php endforeach ?>
 			</select>	
 			<br>
-			<!-- <label for="addcost">Aggiungi qui la tua spesa:</label>
-			<input id="addcost" name="addcost" rows="4" cols="30"></input> -->
 			<label for="descrizione">Aggiunti la descrizione della spesa</label>
 			<input type="text" id="descrizione" name="descrizione"> 
 			<br>
@@ -42,9 +39,14 @@
 
 			<input type="submit" value="Aggiungi">
 		</form>
+		<br><br>
+		<a href="?">Torna indietro</a>
+
 
 
 	</form>
+	<?php include $_SERVER['DOCUMENT_ROOT'] . $root . '/includes/footer.inc.php' ?>
+
 
 </body>
 </html>
