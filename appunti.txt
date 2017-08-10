@@ -4,6 +4,7 @@ PHP
 - il metofo "query" restituisce un ogetto PDO Statement che rappresenta una serie di risultati "return set" contenente le righe restituite.
 - è molto impo che il tag php cominci dalla prima riga, altrimenti il redirect alla home dopo aver aggiunto o rimosso una voce non funziona -> header('Location: .'); 
 - per recuperare un valore inviato da un Form, si possono usare tre funzioni: $_GET, $_POST e $_REQUEST. Quest' ultima è una via di mezzo tra GET e POST
+- GLOBAL $pdo -> o il nome di un'altra qualsiasi variabile globale permette di importare all'interno di una funzione una variabile globale 
 
 SQL
 - CURRENT_TIMESTAMP() -> prende la data odierna
@@ -17,4 +18,6 @@ SQL
 - INSERT INTO `categorie`(`id`, `categoria`, `tag`) VALUES ('2','regali','regali') --> aggiunge una riga ad una tabella
 - INNER JOIN -> unisce i risultati di più tabelle es -> SELECT joke.id, LEFT(joketext, 20), name, email FROM joke INNER JOIN author ON authorid = author.id --> prende i dati di due tabelle e li unisce in un
   unico risultato (quando ci sono colonne simili si silezionano con il prefisso della tabelle davanti --> joke.id). l'ON unisce infine la colonna della prima tabella "authorid" con la colonna della secona author.id 
-- 
+- INSERT INTO costicategorie (idcategoria) SELECT id FROM categorie WHERE id = '46' -> insert a value in a table taking a value from another table;
+
+
