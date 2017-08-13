@@ -12,6 +12,14 @@
 	<h4>AGGIUNGI SPESA</h4>
 	<form action="?aggiungi_costo" method="post">
 		<div>
+			<label for="utente">Aggiungi l'utente che ha effettuato la spesa</label>
+			<select name="idutente" id="idutente">
+			<option></option>
+			<?php foreach($utenti as $utente): ?>
+				<option value="<?php htmlout($utente['id']); ?>"><?php htmlout($utente['utente']); ?></option>
+			<?php endforeach ?>
+			</select>				
+			<br>	
 			<label for="id_categoria">A quale categoria apprtiene questa spesa:</label>
 			<select name="idcategoria" id="idcategoria">
 			<option></option>
@@ -25,12 +33,11 @@
 			<br>
 			<label for="costo">Aggiungi l'importo della tua spesa</label>
 			<input type="number" name="costo" id="costo">
-			<br>
+			<br>		
 			<input type="submit" value="Aggiungi">
 		</form>
 		<br><br>
 		<a href="?">Torna indietro</a>
-
 
 
 	</form>

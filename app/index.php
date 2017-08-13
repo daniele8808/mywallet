@@ -5,10 +5,10 @@
 
 
 	$costi = visualizza_costi();
-	$dati = visualizza_dati();
+	//$dati = visualizza_dati();
 	
 	//	VISUALIZZA O NO DATI SE PRESENTI NEL DB
-	if ($dati != 0) {
+	if ($costi[0] != 0) {
 		include 'review.html.php';
 	} else {
 		include 'no_data.html.php';

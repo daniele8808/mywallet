@@ -15,13 +15,18 @@
 	//CANCELLA CATEGORIA
 	if (isset($_GET['cancella_categoria'])) { cancella_categoria(); }
 
+	//CANCELLA UTENTE
+	if (isset($_GET['cancella_utente'])) { cancella_utente(); }
+
 	$costi = visualizza_costi(); /* visualizza in homepage una review degli ultimi costi*/
 
-	$dati = visualizza_dati(); /*controlla se ci sono dati nel db*/
+	$nuove_categoria = inserisci_categoria();/* inserisce le nuove categorie nel dB*/
 
 	$categorie = visualizza_categorie();/* fa visualizzare le categorie esistenti*/
 
-	$nuove_categoria = inserisci_categoria();/* fa visualizzare le nuove categorie inserite*/
+	$nuovo_utente = inserisci_utente();
+
+	$utenti = visualizza_utenti();/* fa visualizzare gli utenti esistenti*/
 
 	//SE CLICK SU MODIFICA COSTO
 	if (isset($_GET['modifica_costo'])) { modifica_costo();	}
@@ -35,11 +40,14 @@
 	//SE CLICK SU AGGIUNGI COSTO
 	if (isset($_GET['inserisci_costo'])) {	include 'inserisci_costo.php'; exit();	}
 
+	//SE CLICK SU INSERISCI UTENTE
+	if (isset($_GET['inserisci_utente'])) {	include 'inserisci_utente.html.php'; exit();	}
+
 	//SE NON CI SONO/NON CI SONO DATI NEL DB
-	if ($costi[0] != 0) {
+	//if ($costi[0] != 0) {
 		include 'review.html.php';
-	} else {
-		include 'no_data.html.php';
-	}
+	//} else {
+	//	include 'no_data.html.php';
+	//}
 
 	

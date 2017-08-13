@@ -22,3 +22,6 @@ SQL
 - INSERT INTO costicategorie (idcategoria) SELECT id FROM categorie WHERE id = '46' -> insert a value in a table taking a value from another table;
 
 
+
+PROBLEMI APP
+quando modifico un costo non aggiorna l'ID categoria e di conseguenza la query di aggiornamen toi non va a buon fine

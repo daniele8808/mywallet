@@ -5,7 +5,7 @@
 		
 </head>
 <body>
-
+<?php echo$costi  ?>
 <h3>ADMIN PANEL</h3>
 <div>
 <span class="margin"><a href="?inserisci_costo">INSERISCI COSTO</a></span>

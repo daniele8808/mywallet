@@ -1,3 +1,4 @@
+<?php $costi; $categorie; $utenti;?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +18,12 @@
 </head>
 <body>
 <h3>ADMIN PANEL</h3>
+<?php // echo $_POST['idcategoria'] ?>
 <div>
+
 <span class="margin"><a href="?inserisci_costo">INSERISCI COSTO</a></span>
 <span class="margin"><a href="?inserisci_categoria">INSERISCI CATEGORIA</a></span>
+<span class="margin"><a href="?inserisci_utente">INSERISCI UTENTE</a></span>
 <span><a href="../">ESCI</a></span>
 </div>
 <br><br><br><br>
@@ -30,15 +34,18 @@
 			<th class="a">DESCRIZIONE</th>
 			<th class="a">COSTO</th>
 			<th class="a">CATEGORIA</th>
+			<th class="a">UTENTE</th>			
 			<th class="a">DATA</th>
 			<th class="b">---</th>
 			<th class="b">---</th>
 		</tr>
+		<?php if (count($costi) != 0): ?>
 		<?php foreach ($costi as $costo): ?>
 			<tr>
 				<th class="a"><?php  htmlout($costo['descrizione']); ?></th>
 				<th class="a"><?php  htmlout($costo['costo']); ?></th>
 				<th class="a"><?php  htmlout($costo['categoria']); ?></th>
+				<th class="a"><?php  htmlout($costo['utente']); ?></th>
 				<th class="a"><?php  htmlout($costo['tempo']); ?></th>
 				<form action="?cancella_costo" method="POST">
 				<th class="none"><input type="hidden" value="<?php htmlout($costo['id']); ?>" name="id"></th>
@@ -50,12 +57,18 @@
 				</form>
 			</tr>
 	    <?php endforeach; ?>
-
+		<?php else: ?>
+			<tr>
+				<td colspan="7">Non ci sono costi</td>
+			</tr>
+		<?php endif; ?>
 		</table>
 
 
+
 	<p>ECCO LE CATEGORIE ESISTENTI:</p>
-	  <?php  foreach($categorie as $categoria): ?>
+	<?php if (count($categorie) != 0): ?>
+	<?php  foreach($categorie as $categoria): ?>
 		<table style="width:10%">
 			<form action="?cancella_categoria" method="post" >
 			<tr>
@@ -65,7 +78,28 @@
 			</tr>
 			</form>
 		</table>
-	<?php  endforeach; ?> 
+	<?php  endforeach; ?>
+	<?php else: ?>
+		<p>non ci sono categorie</p>
+	<?php endif; ?> 
+	<?php  ?>
+
+	<p>ECCO GLI UTENTI ESISTENTI:</p>
+	<?php if (count($utenti) != 0): ?>	
+	<?php  foreach($utenti as $utente): ?>
+		<table style="width:10%">
+			<form action="?cancella_utente" method="post" >
+			<tr>
+			<th class="a"><?php htmlout($utente['utente']); ?></th>
+			<th class="none"><input type="hidden" value="<?php  htmlout($utente['id']);?>" name="id"></th>
+			<th><input type="submit" value="cancella"></th>
+			</tr>
+			</form>
+		</table>
+	<?php  endforeach; ?> 	
+	<?php else: ?>
+		<p>non ci sono utenti registrati</p>
+	<?php endif; ?>
 
 
 

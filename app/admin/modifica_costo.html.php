@@ -11,8 +11,19 @@
 </head>
 <body>			
 	<h4>MODIFICA COSTO</h4>
+	<!-- <?php  //print_r( $row); ?><br>
+	<?php  //print_r( $categorie); ?><br>
+	<?php  //print_r( $utenti); ?> -->
 	<form action="?aggiorna_costo" method="post">
 		<div>
+			<label for="utente">Aggiungi l'utente che ha effettuato la spesa</label>
+			<select name="idutente" id="idutente">
+			<option></option>
+			<?php foreach($utenti as $utente): ?>
+				<option value="<?php htmlout($utente['id']); ?>"><?php htmlout($utente['utente']); ?></option>
+			<?php endforeach ?>
+			</select>				
+			<br>	
 			<label for="categoria">A quale categoria apprtiene questa spesa:</label>
 			<select name="categoria" id="categoria">
 				<option></option>
@@ -27,7 +38,7 @@
 			<label for="costo">Aggiungi l'importo della tua spesa</label>
 			<input type="number" name="costo" id="costo" placeholder="<?php htmlout($row['costo']); ?>">
 			<input type="hidden" value="<?php htmlout($row['id']) ?>" name="id">
-			<input type="hidden" value="<?php htmlout($row['idcategoria']) ?>" name="idcategoria">
+			<!-- <input type="hidden" value="<?php // htmlout($categoria['id']) ?>" name="idcategoria"> -->
 			<br>
 			<input type="submit" value="Aggiorna">
 		</form>

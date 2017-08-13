@@ -11,12 +11,12 @@
 <body>			
 
 
-	<h4>AGGIUNGI CATEGORIA</h4>
+	<h4>AGGIUNGI UTENTE</h4>
 
-	<form action="?aggiungi_categoria" method="POST">	
-		<label for="categoria">Se occorre aggiungi una nuova categoria</label>
-		<input type="text" id="categoria" name="categoria"> 
-		<input type="hidden" id="tag" name="tag"> 
+	<form action="?aggiungi_utente" method="POST">	
+		<label for="utente">Aggiungi un nuovo utente</label>
+		<input type="text" id="utente" name="utente"> 
+		<br>
 		<input type="submit" value="Aggiungi">
 	</form>
 	<br>

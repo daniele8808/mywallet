@@ -24,6 +24,7 @@
 			<th class="a">DESCRIZIONE</th>
 			<th class="a">COSTO</th>
 			<th class="a">CATEGORIA</th>
+			<th class="a">UTENTE</th>
 			<th class="a">DATA</th>
 		</tr>
 		<?php foreach ($costi as $costo): ?>
@@ -31,6 +32,7 @@
 			<th class="a"><?php  htmlout($costo['descrizione']); ?></th>
 			<th class="a"><?php  htmlout($costo['costo']); ?></th>
 			<th class="a"><?php  htmlout($costo['categoria']); ?></th>
+			<th class="a"><?php  htmlout($costo['utente']); ?></th>
 			<th class="a"><?php  htmlout($costo['tempo']); ?></th>
 		</tr>	
 		<?php endforeach; ?>
