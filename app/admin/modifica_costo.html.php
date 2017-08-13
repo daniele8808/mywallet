@@ -1,3 +1,5 @@
+<?php 	$root = '/provePhp/myWallet/app'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,6 @@
 	</style>
 </head>
 <body>			
-	
 	<h4>MODIFICA COSTO</h4>
 	<form action="?aggiorna_costo" method="post">
 		<div>
@@ -16,17 +17,17 @@
 			<select name="categoria" id="categoria">
 				<option></option>
 				<?php foreach($categorie as $categoria): ?>
-				<option value="<?php echo htmlspecialchars($categoria['id'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($categoria['categoria'], ENT_QUOTES, 'UTF-8'); ?></option>
+				<option value="<?php htmlout($categoria['id']);?>"><?php htmlout($categoria['categoria']); ?></option>
 				<?php endforeach ?>
 			</select>	
 			<br>
 			<label for="descrizione">Aggiunti la descrizione della spesa</label>
-			<input type="text" id="descrizione" name="descrizione" placeholder="<?php echo htmlspecialchars($row['descrizione'], ENT_QUOTES, 'UTF-8'); ?>">
+			<input type="text" id="descrizione" name="descrizione" placeholder="<?php htmlout($row['descrizione']); ?>">
 			<br>
 			<label for="costo">Aggiungi l'importo della tua spesa</label>
-			<input type="number" name="costo" id="costo" placeholder="<?php echo htmlspecialchars($row['costo'], ENT_QUOTES, 'UTF-8'); ?>">
-			<input type="hidden" value="<?php echo $row['id'] ?>" name="id">
-			<input type="hidden" value="<?php echo $row['idcategoria'] ?>" name="idcategoria">
+			<input type="number" name="costo" id="costo" placeholder="<?php htmlout($row['costo']); ?>">
+			<input type="hidden" value="<?php htmlout($row['id']) ?>" name="id">
+			<input type="hidden" value="<?php htmlout($row['idcategoria']) ?>" name="idcategoria">
 			<br>
 			<input type="submit" value="Aggiorna">
 		</form>
