@@ -27,7 +27,10 @@
 			<th class="a">UTENTE</th>
 			<th class="a">DATA</th>
 		</tr>
+		<?php if (count($costi) != 0): ?>
+		<?php $i = 0; ?>		
 		<?php foreach ($costi as $costo): ?>
+		<?php if($i==10) break; ?>			
 		<tr>
 			<th class="a"><?php  htmlout($costo['descrizione']); ?></th>
 			<th class="a"><?php  htmlout($costo['costo']); ?></th>
@@ -35,7 +38,13 @@
 			<th class="a"><?php  htmlout($costo['utente']); ?></th>
 			<th class="a"><?php  htmlout($costo['tempo']); ?></th>
 		</tr>	
+		<?php $i++; //echo $i; ?>
 		<?php endforeach; ?>
+		<?php else: ?>
+			<tr>
+				<td colspan="7">Non ci sono costi</td>
+			</tr>
+		<?php endif; ?>
 
 		</table>
 

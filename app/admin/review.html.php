@@ -40,7 +40,9 @@
 			<th class="b">---</th>
 		</tr>
 		<?php if (count($costi) != 0): ?>
+		<?php $i = 0; ?>
 		<?php foreach ($costi as $costo): ?>
+			<?php if($i==10) break; ?>
 			<tr>
 				<th class="a"><?php  htmlout($costo['descrizione']); ?></th>
 				<th class="a"><?php  htmlout($costo['costo']); ?></th>
@@ -55,7 +57,9 @@
 				<th class="none"><input type="hidden" value="<?php htmlout($costo['id']); ?>" name="id"></th>
 				<th><input type="submit" value="modifica"></th>
 				</form>
-			</tr>
+			</tr>				
+			<?php $i++; //echo $i; ?>
+			
 	    <?php endforeach; ?>
 		<?php else: ?>
 			<tr>
