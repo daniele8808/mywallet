@@ -29,31 +29,29 @@
 			<th class="a">ID</th>
 			<th class="a">DESCRIZIONE</th>
 			<th class="a">COSTO</th>
-			<th class="a">CATEGORIA</th>
-			<th class="a">UTENTE</th>
+			<th class="a">IDUTENTE</th>
 			<th class="a">DATA</th>
 		</tr>
-		<?php // if (count($costi) != 0): ?>
+		<?php if (count($spese) != 0): ?>
 		<?php // $i = 0; ?>		
-		<?php foreach ($costi as $costo): ?>
+		<?php foreach($spese as $spesa): ?>	
 		<?php // echo $costo['categoria']?>
 
 		<?php // if($i==10) break; ?>			
 		<tr>
-			<th class="a"><?php  htmlout($costo['id']); ?></th>
-			<th class="a"><?php  htmlout($costo['descrizione']); ?></th>
-			<th class="a"><?php  htmlout($costo['costo']); ?></th>
-			<th class="a"><?php  htmlout($costo['categoria']); ?></th>
-			<th class="a"><?php  htmlout($costo['utente']); ?></th>
-			<th class="a"><?php  htmlout($costo['tempo']); ?></th>
+			<th class="a"><?php  htmlout($spesa['id']); ?></th>
+			<th class="a"><?php  htmlout($spesa['descrizione']); ?></th>
+			<th class="a"><?php  htmlout($spesa['costo']); ?></th>
+			<th class="a"><?php  htmlout($spesa['idutente']); ?></th>
+			<th class="a"><?php  htmlout($spesa['tempo']); ?></th>
 		</tr>	
 		<?php  //$i++; //echo $i; ?>
 		<?php endforeach; ?>
-		<?php // else: ?>
-			<!-- <tr>
-				<td colspan="7">Non ci sono costi</td>
-			</tr> -->
-		<?php //endif; ?>
+		<?php  else: ?>
+			 <tr>
+				<td colspan="7">Non ci sono spese</td>
+			</tr> 
+		<?php endif; ?>
 
 		</table>
 
