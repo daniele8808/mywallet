@@ -8,8 +8,8 @@
 	//$dati = visualizza_dati();
 	
 	//	VISUALIZZA O NO DATI SE PRESENTI NEL DB
-	if ($costi[0] != 0) {
-		include 'review.html.php';
-	} else {
-		include 'no_data.html.php';
-	}
+	//if ($costi[0] != 0) {
+	include 'review.html.php';
+	//} else {
+	//	include 'no_data.html.php';
+	//}

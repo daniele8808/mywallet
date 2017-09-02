@@ -18,33 +18,42 @@
 <body>
 		<h2>MY WALLET APP</h2>
 		<br>
+		<?php  
+		//echo count($costi);
+		//echo '<br>';
+		//echo($costi[3]['categoria']) 
+		?>
 		<p>ECCO LE SPESE DELLA GIORNATA:</p>
 		<table style="width:70%">
 		<tr>
+			<th class="a">ID</th>
 			<th class="a">DESCRIZIONE</th>
 			<th class="a">COSTO</th>
 			<th class="a">CATEGORIA</th>
 			<th class="a">UTENTE</th>
 			<th class="a">DATA</th>
 		</tr>
-		<?php if (count($costi) != 0): ?>
-		<?php $i = 0; ?>		
+		<?php // if (count($costi) != 0): ?>
+		<?php // $i = 0; ?>		
 		<?php foreach ($costi as $costo): ?>
-		<?php if($i==10) break; ?>			
+		<?php // echo $costo['categoria']?>
+
+		<?php // if($i==10) break; ?>			
 		<tr>
+			<th class="a"><?php  htmlout($costo['id']); ?></th>
 			<th class="a"><?php  htmlout($costo['descrizione']); ?></th>
 			<th class="a"><?php  htmlout($costo['costo']); ?></th>
 			<th class="a"><?php  htmlout($costo['categoria']); ?></th>
 			<th class="a"><?php  htmlout($costo['utente']); ?></th>
 			<th class="a"><?php  htmlout($costo['tempo']); ?></th>
 		</tr>	
-		<?php $i++; //echo $i; ?>
+		<?php  //$i++; //echo $i; ?>
 		<?php endforeach; ?>
-		<?php else: ?>
-			<tr>
+		<?php // else: ?>
+			<!-- <tr>
 				<td colspan="7">Non ci sono costi</td>
-			</tr>
-		<?php endif; ?>
+			</tr> -->
+		<?php //endif; ?>
 
 		</table>
 

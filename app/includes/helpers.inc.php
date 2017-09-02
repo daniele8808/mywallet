@@ -11,7 +11,16 @@
 
 
 		try {
-			$result = $pdo->query('SELECT costi.id, costo, descrizione, categoria, tempo, utente FROM costi INNER JOIN categorie ON idcategoria = categorie.id INNER JOIN utenti ON idutente = utenti.id');
+			$result = $pdo->query('
+				SELECT costi.id, costo, descrizione, categoria, tempo, utente
+				FROM costi 
+				INNER JOIN costicategorie 
+				ON costi.id = costiid 
+				INNER JOIN categorie 
+				ON categorieid = categorie.id 
+				INNER JOIN utenti 
+				ON costi.idutente = utenti.id
+				WHERE TRUE');
 		} catch (PDOException $e) {
 			$error = 'errore nel recupero del dato '. $e->getMessage();
 			include 'error.html.php';
@@ -73,7 +82,7 @@
 		}	
 
 		while ($row = $result->fetch()) {
-			$utenti[] = array("utente"=>$row['utente'], "id"=>$row['id']);
+			$utenti[] = array("id"=>$row['id'], "utente"=>$row['utente']);
 		}		
 		return $utenti;
 	}
@@ -125,7 +134,7 @@
 				FROM utenti, costi 
 				WHERE utenti.id = costi.idutente
 				AND utenti.id = :id;
-				DELETE FROM utenti 
+				DELETE FROM utent
 				WHERE id = :id';
 			$s = $pdo->prepare($sql);
 			$s->bindValue(':id', $_POST['id']);

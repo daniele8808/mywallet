@@ -21,7 +21,3 @@ SQL
   unico risultato (quando ci sono colonne simili si silezionano con il prefisso della tabelle davanti --> joke.id). l'ON unisce infine la colonna della prima tabella "authorid" con la colonna della secona author.id 
 - INSERT INTO costicategorie (idcategoria) SELECT id FROM categorie WHERE id = '46' -> insert a value in a table taking a value from another table;
 
-
-
-PROBLEMI APP
-quando modifico un costo non aggiorna l'ID categoria e di conseguenza la query di aggiornamen toi non va a buon fine
