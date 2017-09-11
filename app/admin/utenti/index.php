@@ -1,6 +1,22 @@
 <?php 
- 	include $_SERVER['DOCUMENT_ROOT'] . '/provePhp/myWallet/app' .'/includes/db.inc.php' ;
-	include $_SERVER['DOCUMENT_ROOT'] . '/provePhp/myWallet/app' .'/includes/helpers.inc.php' ;
+	$root = '/provePhp/myWallet/app';
+	//include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/helpers.inc.php' ;
+	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/db.inc.php' ;
+	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/access.inc.php';
+
+
+
+
+	if(!userIsLoggedIn()){ 
+		include '../login.html.php';
+		exit();
+	}
+
+	if(!userHasRole('amministratore')){ 
+		$error = 'Solo gli amministratori possono accedere a quest\'area';
+		include '../accessonegato.html.php'; 
+		exit();
+	}
  
  	//Quando elimino un utente, automaticamente elimino anche i costi ad esso associati e la tabella associativa
 
@@ -158,3 +174,5 @@
 		$utenti[] = array('id'=> $row['id'], 'utente'=>$row['utente']);
 	}
 	include 'utenti.html.php';
+
+

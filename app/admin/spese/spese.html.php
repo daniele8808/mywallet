@@ -1,3 +1,5 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/helpers.inc.php' ;  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,18 +26,15 @@
 				<th class="a">DESCRIZIONE</th>
 				<th class="a">COSTO</th>
 				<th class="a">IDUTENTE</th>
-				<!-- <th class="a">UTENTE</th>		-->
 				<th class="a">DATA</th>
 			</tr>
-			<?php foreach($spese as $spesa): ?>	
-			<p>	<?php // print_r($spesa); ?></p>		
+			<?php foreach($spese as $spesa): ?>
 			<form action="?" method="post" >
 			<tr>
 				<th class="c"><?php htmlout($spesa['id']); ?></th>
 				<th class="c"><?php htmlout($spesa['descrizione']); ?></th>
 				<th class="c"><?php htmlout($spesa['costo']); ?></th>
 				<th class="c"><?php htmlout($spesa['idutente']); ?></th>
-				<!-- <th class="c"><?php // htmlout($spesa['utente']); ?></th> -->				
 				<th class="c"><?php htmlout($spesa['tempo']); ?></th>
 				<th class="none c"><input type="hidden" name="id" value="<?php htmlout($spesa['id']);?>"></th>
 				<th class="c"><input type="submit" name="action" value="modifica"></th>				
@@ -48,5 +47,6 @@
 	
 	<p><a href="?">Nuova Ricerca</a></p>
 	<p><a href="..">Torna indietro</a></p>
+	
 </body>
 </html>

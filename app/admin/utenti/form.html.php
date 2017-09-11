@@ -1,11 +1,13 @@
 <?php 
- 	include $_SERVER['DOCUMENT_ROOT'] . '/provePhp/myWallet/app' .'/includes/db.inc.php' ;
+ 	//include $_SERVER['DOCUMENT_ROOT'] . $root . '/includes/db.inc.php' ;
+ 	include $_SERVER['DOCUMENT_ROOT'] . $root . '/includes/helpers.inc.php' ;
+
  ?>
 
  <!DOCTYPE html>
  <html>
  <head>
- 	<title><?php htmlout($pagetitle)?></title>
+ 	<title><?php htmlout($pagetitle);?></title>
  </head>
  <body>
  	<h1><?php htmlout($pagetitle); ?></h1>
@@ -17,8 +19,8 @@
  			<label for="mail">Mail: <input type="text" name="mail" id="mail" value="<?php htmlout($mail); ?>"></label>
  		</div>
  		<div>
- 			<input type="hidden" name="id" value="<?php htmlout($id) ?>">
- 			<input type="submit" value="<?php htmlout($button) ?>">
+ 			<input type="hidden" name="id" value="<?php htmlout($id); ?>">
+ 			<input type="submit" value="<?php htmlout($button); ?>">
  		</div>
 
 

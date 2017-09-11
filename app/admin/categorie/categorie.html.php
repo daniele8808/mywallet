@@ -1,3 +1,5 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/helpers.inc.php' ;  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,21 +22,22 @@
 	<p>ECCO LE CATEGORIE ESISTENTI:</p>
 	<p><a href="?add">Aggiungi categorie</a></p>
 		<table style="width:">
-			<form action="" method="POST" >
 			<tr>
 				<th class="a">CATEGORIA</th>
 			</tr>			
 			<?php foreach($categorie as $categoria): ?>		
+			<form action="?" method="POST" >
 			<tr>
 				<th class="c"><?php htmlout($categoria['categoria']); ?></th>
-				<th class="none c"><input type="hidden" value="<?php htmlout($categoria['id']);?>" name="id"></th>
+				<th class="none c"><input type="hidden" name="id" value="<?php htmlout($categoria['id']) ?>"></th>
 				<th class="c"><input type="submit" name="action" value="modifica"></th>
 				<th class="c"><input type="submit" name="action" value="cancella"></th>
 			</tr>
-			<?php  endforeach; ?> 	
 			</form>
+			<?php  endforeach; ?> 	
 		</table>
 
 	<p><a href="..">Torna indietro</a></p>
+	
 </body>
 </html>

@@ -1,9 +1,7 @@
-
 INSERT INTO `categorie` (`id`, `categoria`, `tag`) VALUES
 (1, 'varie', 'varie'),
 (2, 'ufficio', 'ufficio'),
 (3, 'cibo', 'cibo');
-
 
 INSERT INTO `costi` (`id`, `costo`, `descrizione`, `idutente`, `tempo`) VALUES
 (1, 10, 'gratta e vinci', 21, '2020-08-13'),
@@ -23,7 +21,6 @@ INSERT INTO `costi` (`id`, `costo`, `descrizione`, `idutente`, `tempo`) VALUES
 (15, 500, 'barca', 23, '2020-08-21'),
 (16, 300, 'sedia', 24, '2020-08-21'),
 (17, 60, 'staffa', 22, '2020-08-21');
-
 
 INSERT INTO `costicategorie` (`costiid`, `categorieid`) VALUES
 (1, 1),
@@ -49,12 +46,21 @@ INSERT INTO `costicategorie` (`costiid`, `categorieid`) VALUES
 (15, 2),
 (16, 1);
 
+INSERT INTO `utenti` (`id`, `utente`, `mail`, `password`) VALUES
+(20, 'daniele', 'daniele8808@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(21, 'ionela', 'iola86@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(22, 'amerigo', 'iola85@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(23, 'sauzz', 'iola82@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(24, 'mamma', 'iola84@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055');
 
+INSERT INTO `ruoli`(`id`, `descrizione`) VALUES 
+('amministratore', 'aggiungi, rimuovi, modifica utenti, spese e categorie'),
+('dipendente', 'aggiungi, spese e categorie');
 
-INSERT INTO `utenti` (`id`, `utente`, `mail`) VALUES
-(20, 'daniele', 'daniele8808@gmail.com'),
-(21, 'ionela', 'iola86@gmail.com'),
-(22, 'amerigo', 'iola85@gmail.com'),
-(23, 'sauzz', 'iola82@gmail.com'),
-(24, 'mamma', 'iola84@gmail.com');
-
+INSERT INTO `utentiruoli`(`utenteid`, `ruoloid`) VALUES 
+(20,'amministratore'),
+(20,'dipendente'),
+(21,'dipendente'),
+(22,'dipendente'),
+(23,'dipendente'),
+(24,'dipendente');

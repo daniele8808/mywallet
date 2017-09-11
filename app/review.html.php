@@ -18,11 +18,6 @@
 <body>
 		<h2>MY WALLET APP</h2>
 		<br>
-		<?php  
-		//echo count($costi);
-		//echo '<br>';
-		//echo($costi[3]['categoria']) 
-		?>
 		<p>ECCO LE SPESE DELLA GIORNATA:</p>
 		<table style="width:70%">
 		<tr>
@@ -33,11 +28,7 @@
 			<th class="a">DATA</th>
 		</tr>
 		<?php if (count($spese) != 0): ?>
-		<?php // $i = 0; ?>		
 		<?php foreach($spese as $spesa): ?>	
-		<?php // echo $costo['categoria']?>
-
-		<?php // if($i==10) break; ?>			
 		<tr>
 			<th class="a"><?php  htmlout($spesa['id']); ?></th>
 			<th class="a"><?php  htmlout($spesa['descrizione']); ?></th>
@@ -45,7 +36,6 @@
 			<th class="a"><?php  htmlout($spesa['idutente']); ?></th>
 			<th class="a"><?php  htmlout($spesa['tempo']); ?></th>
 		</tr>	
-		<?php  //$i++; //echo $i; ?>
 		<?php endforeach; ?>
 		<?php  else: ?>
 			 <tr>

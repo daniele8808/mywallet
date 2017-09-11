@@ -1,7 +1,18 @@
 <?php  
 	$root = '/provePhp/myWallet/app';
+	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/access.inc.php';
 	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/db.inc.php' ;
-	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/helpers.inc.php' ;
+
+	if(!userIsLoggedIn()){ 
+		include '../login.html.php';
+		exit();
+	}
+	
+	if(!userHasRole('dipendente')){ 
+		$error = 'Solo i dipendenti possono accedere a quest\'area';
+		include '../accessonegato.html.php'; 
+		exit();
+	}	
 
 	if (isset($_GET['add'])) {
 		$pagetitle = 'Nuova Spesa';
@@ -280,6 +291,8 @@
 	//CERCA DEI COSTI NEL DB
 	if (isset($_GET['action']) and $_GET['action'] == 'search') {
 
+		$spese = array();
+
 		$select = 'SELECT id, costo, descrizione, tempo, idutente';
 		$from = ' FROM costi';
 		$where = ' WHERE TRUE';
@@ -321,9 +334,13 @@
 				'idutente'=>$row['idutente']
 			);
 		}
-
-		include 'spese.html.php';
-		exit();		
+		//echo count($spese);
+		if (count($spese) == 0) {
+			echo "non ci sono spese registrate";
+		} else {
+			include 'spese.html.php';			
+		exit();
+		}
 	}	
 
 	//visualizza il modulo di ricerca vuoto
@@ -337,7 +354,7 @@
 
 	foreach ($result as $row) {
 		$utenti[] = array('id'=>$row['id'], 'utente'=>$row['utente']);
-	}
+	}	
 
 	try {
 		 $result = $pdo->query('SELECT id, categoria FROM categorie');

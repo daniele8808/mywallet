@@ -1,8 +1,12 @@
 <?php  
+
 	$root = '/provePhp/myWallet/app';
 	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/db.inc.php' ;
 	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/helpers.inc.php' ;
+	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/cookie.php' ;
+
 	$spese = array();
+
 
 	try {
 		$sql = 'SELECT id, descrizione, costo, idutente, tempo FROM costi';
@@ -19,8 +23,10 @@
 	}
 
 	//	VISUALIZZA O NO DATI SE PRESENTI NEL DB
-	if ($spese != 0) {
-		include 'review.html.php';
-	} else {
+	if (count($spese) == 0) {
 		include 'no_data.html.php';
-	}
+		exit();
+	} else {
+		include 'review.html.php';
+		exit();
+	}	

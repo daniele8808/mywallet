@@ -1,4 +1,6 @@
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/provePhp/myWallet/app' .'/includes/db.inc.php' ; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/db.inc.php' ; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/helpers.inc.php' ; ?>
+
  <!DOCTYPE html>
  <html>
  <head>

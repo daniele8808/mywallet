@@ -1,11 +1,18 @@
-
 PHP
 - Il metodo "exec" fa parte dell'ogetto PDO e restituisce  per le query DELETE, INSERT e UPDATE il numero di righe nella tabella.
 - il metofo "query" restituisce un ogetto PDO Statement che rappresenta una serie di risultati "return set" contenente le righe restituite.
 - è molto impo che il tag php cominci dalla prima riga, altrimenti il redirect alla home dopo aver aggiunto o rimosso una voce non funziona -> header('Location: .'); 
 - per recuperare un valore inviato da un Form, si possono usare tre funzioni: $_GET, $_POST e $_REQUEST. Quest' ultima è una via di mezzo tra GET e POST
 - global $pdo -> o il nome di un'altra qualsiasi variabile globale permette di importare all'interno di una funzione una variabile globale 
-- $GLOBALS['pdo'] -> è l'alternativa alla costante GLOBAL e ha la stessa funzione -> è un array che contiene una voce per ogni variabile Globale
+- $_GLOBALS['pdo'] -> è l'alternativa alla costante GLOBAL e ha la stessa funzione -> è un array che contiene una voce per ogni variabile Globale
+- $_COOKIE['nome cookie'] -> array speciale PHP dove vengono salvati i cookie creati di un sito
+- setcookie() -> funzione per settare un cookie e rendere il browser riconoscibile dal server ad ogni richiesta
+- $_SESSION[] -> array speciale PHP dove vengono salvate le variabili create durante la sessione -> $_SESSION['password'] = 'mypassword';
+- number_format(numero, decimali dopo la virgola) -> funzione per formattare un numero con decimali con determinate cifre -> es number_format(3,14567, 2) -> cambia 3,14567 in 3,14
+- session_start() -> funzione per ricercare una sessione gia aperta e se non trovata iniziarne una nuova. Se viene trovato un ID di sessione questa funzione riempie le variabili registrate nella
+	sessione. Dato che questan cerca di creare un cookie deve essere inserita all'inizio del controller.
+- md5($password . 'salt') -> la funzione MD5 crea una stringa di 32 caratteri apparentemente casuali. Anche se la stessa password genera la stessa stringa, dalla stringa risulta impossibile risalire
+	alla password. Normalmente oltre alla password i programmatori aggiungono una stringa definita "sale" alla password utente per rafforzare la sicurezza.
 
 SQL
 - CURRENT_TIMESTAMP() -> prende la data odierna
@@ -17,7 +24,18 @@ SQL
 - DISTINCT nelle query SQL (ad esempio SELECT) impedisce alla query di produrre risultati duplicati
 - RENAME TABLE table_name TO new_name;
 - INSERT INTO `categorie`(`id`, `categoria`, `tag`) VALUES ('2','regali','regali') --> aggiunge una riga ad una tabella
-- INNER JOIN -> unisce i risultati di più tabelle es -> SELECT joke.id, LEFT(joketext, 20), name, email FROM joke INNER JOIN author ON authorid = author.id --> prende i dati di due tabelle e li unisce in un
-  unico risultato (quando ci sono colonne simili si silezionano con il prefisso della tabelle davanti --> joke.id). l'ON unisce infine la colonna della prima tabella "authorid" con la colonna della secona author.id 
-- INSERT INTO costicategorie (idcategoria) SELECT id FROM categorie WHERE id = '46' -> insert a value in a table taking a value from another table;
+- INNER JOIN -> unisce i risultati di più tabelle es -> 
 
+												SELECT joke.id, LEFT(joketext, 20), name, email 
+												FROM joke 
+												INNER JOIN author 
+												ON authorid = author.id 
+
+	prende i dati di due tabelle e li unisce in un unico risultato (quando ci sono colonne simili si silezionano con il prefisso della tabelle davanti --> joke.id). l'ON unisce infine la colonna della prima tabella "authorid" con la colonna della secona author.id 
+- INSERT INTO costicategorie (idcategoria) SELECT id FROM categorie WHERE id = '46' -> insert a value in a table taking a value from another table;
+- ALTER TABLE tabella ADD UNIQUE (colonna) -> rende ogni dato esistente nella colonna un valore unico (non ci possono essere doppioni);
+
+TO DO LIST
+- fa visualizzare il tasto log out solo quando l'utente è loggato
+- - aggiungere il nome utente una volta loggati
+- aggiungere scelta ruolo nella creazione/modifica utente;
