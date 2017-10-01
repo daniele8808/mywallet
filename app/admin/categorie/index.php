@@ -7,7 +7,7 @@
 		include '../login.html.php';
 		exit();
 	}
-	
+	//se non viene trovato un utente con la mail del login e il ruolo amministratore
 	if(!userHasRole('amministratore')){ 
 		$error = 'Solo gli amministratori possono accedere a quest\'area';
 		include '../accessonegato.html.php'; 

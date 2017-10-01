@@ -7,9 +7,11 @@
 		include '../login.html.php';
 		exit();
 	}
-	
-	if(!userHasRole('dipendente')){ 
-		$error = 'Solo i dipendenti possono accedere a quest\'area';
+	//se non viene trovato un utente con la mail del login e il ruolo amministratore
+	//se l'utente non ha il ruolo di amministratore	
+ 	//if (!(userHasRole('amministratore') || userHasRole('dipendente'))) {
+ 	if(!userHasRole('amministratore') && !userHasRole('dipendente')){
+		$error = 'Solo gli utenti registrati possono accedere a quest\'area';
 		include '../accessonegato.html.php'; 
 		exit();
 	}	
@@ -166,7 +168,7 @@
 		
 		$categorieselezionate = array();
 		
-		//ciclo che recupera tutte le categorie solozionate
+		//ciclo che recupera tutte le categorie selezionate
 		foreach ($s as $row) 
 		{ 
 			$categorieselezionate[] = $row['categorieid'];

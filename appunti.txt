@@ -1,10 +1,11 @@
 PHP
+- solitamente nel form prima del submit si mette un campo id HIDDEN che recupera l'ID dell'oggetto selezionato (nel caso in cui si debba modificare una voce gia presente nel DB)
 - Il metodo "exec" fa parte dell'ogetto PDO e restituisce  per le query DELETE, INSERT e UPDATE il numero di righe nella tabella.
 - il metofo "query" restituisce un ogetto PDO Statement che rappresenta una serie di risultati "return set" contenente le righe restituite.
 - è molto impo che il tag php cominci dalla prima riga, altrimenti il redirect alla home dopo aver aggiunto o rimosso una voce non funziona -> header('Location: .'); 
 - per recuperare un valore inviato da un Form, si possono usare tre funzioni: $_GET, $_POST e $_REQUEST. Quest' ultima è una via di mezzo tra GET e POST
 - global $pdo -> o il nome di un'altra qualsiasi variabile globale permette di importare all'interno di una funzione una variabile globale 
-- $_GLOBALS['pdo'] -> è l'alternativa alla costante GLOBAL e ha la stessa funzione -> è un array che contiene una voce per ogni variabile Globale
+- $GLOBALS['pdo'] -> è l'alternativa alla costante GLOBAL e ha la stessa funzione -> è un array che contiene una voce per ogni variabile Globale
 - $_COOKIE['nome cookie'] -> array speciale PHP dove vengono salvati i cookie creati di un sito
 - setcookie() -> funzione per settare un cookie e rendere il browser riconoscibile dal server ad ogni richiesta
 - $_SESSION[] -> array speciale PHP dove vengono salvate le variabili create durante la sessione -> $_SESSION['password'] = 'mypassword';
@@ -26,16 +27,13 @@ SQL
 - INSERT INTO `categorie`(`id`, `categoria`, `tag`) VALUES ('2','regali','regali') --> aggiunge una riga ad una tabella
 - INNER JOIN -> unisce i risultati di più tabelle es -> 
 
-												SELECT joke.id, LEFT(joketext, 20), name, email 
-												FROM joke 
-												INNER JOIN author 
-												ON authorid = author.id 
+		SELECT joke.id, LEFT(joketext, 20), name, email 
+		FROM joke 
+		INNER JOIN author 
+		ON authorid = author.id 
 
 	prende i dati di due tabelle e li unisce in un unico risultato (quando ci sono colonne simili si silezionano con il prefisso della tabelle davanti --> joke.id). l'ON unisce infine la colonna della prima tabella "authorid" con la colonna della secona author.id 
 - INSERT INTO costicategorie (idcategoria) SELECT id FROM categorie WHERE id = '46' -> insert a value in a table taking a value from another table;
 - ALTER TABLE tabella ADD UNIQUE (colonna) -> rende ogni dato esistente nella colonna un valore unico (non ci possono essere doppioni);
 
 TO DO LIST
-- fa visualizzare il tasto log out solo quando l'utente è loggato
-- - aggiungere il nome utente una volta loggati
-- aggiungere scelta ruolo nella creazione/modifica utente;

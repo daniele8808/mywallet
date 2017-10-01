@@ -3,8 +3,7 @@
 	$root = '/provePhp/myWallet/app';
 	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/db.inc.php' ;
 	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/helpers.inc.php' ;
-	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/cookie.php' ;
-
+	
 	$spese = array();
 
 
@@ -30,3 +29,6 @@
 		include 'review.html.php';
 		exit();
 	}	
+
+
+

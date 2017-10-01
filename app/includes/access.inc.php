@@ -1,5 +1,5 @@
 <?php
-
+//session_start();
 function userIsLoggedIn() {
   if (isset($_POST['action']) and $_POST['action'] == 'login') {
     if (!isset($_POST['mail']) or $_POST['mail'] == '' or !isset($_POST['password']) or $_POST['password'] == '') {
@@ -7,6 +7,7 @@ function userIsLoggedIn() {
       $GLOBALS['loginError'] = 'Compila entrambi i campi';
       return FALSE;
     }
+
 
     //$password = md5($_POST['password'] . '1234');
     $password = md5($_POST['password']);
@@ -70,7 +71,7 @@ function databaseContainsAuthor($mail, $password) {
 }
 
 function userHasRole($role) {
-
+  //se la queri trova almeno un elemento che corrisponde alla ricerca della ricerca utente/ruolo
   include 'db.inc.php';
   try
   {
@@ -97,29 +98,3 @@ function userHasRole($role) {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function ceck_username($mail){
-  include 'db.inc.php';
-
-    try {
-      $sql = 'SELECT utente FROM utenti WHERE mail = :mail';
-      $s = $pdo->prepare($sql);
-      $s->bindValue(':mail', $mail);
-      $s->execute();
-    }
-    catch (PDOException $e) {
-      $error = 'Errore nella ricerca dell\'utente.';
-      include 'error.html.php';
-      exit();
-    }
-
-    $utente = $s->fetch();
-    $GLOBALS['utente_loggato'] = $utente;
-}
-
-function isConnected(){
-  if (userIsLoggedIn() == TRUE){
-    return TRUE;
-  }
-}

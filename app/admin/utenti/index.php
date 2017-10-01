@@ -4,9 +4,6 @@
 	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/db.inc.php' ;
 	include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/access.inc.php';
 
-
-
-
 	if(!userIsLoggedIn()){ 
 		include '../login.html.php';
 		exit();
@@ -26,8 +23,24 @@
 		$action = 'addform';
 		$utente = '';
 		$mail = '';
+		$password = '';
+		$ruoloid['ruoloid'] = array();
 		$id = '';
 		$button = 'Aggiungi utente';
+
+		try {
+			$sql = 'SELECT id FROM ruoli';
+			$s = $pdo->prepare($sql);
+			$s->execute();
+		} catch (PDOException $e){
+			$error = 'Errore nel recupero dei ruoli' . $e;
+			include 'error.html.php';
+			exit();			
+		}
+		
+		foreach ($s as $row) {
+			$ruoli[] = array('id' => $row['id']);
+		}
 
 		include 'form.html.php';
 		exit();
@@ -38,26 +51,43 @@
 		try {
 			$sql = 'INSERT INTO utenti SET
 					utente = :utente,
-					mail = :mail';
+					mail = :mail,
+					password = :password';
 			$s = $pdo->prepare($sql);
 			$s->bindValue(':utente', $_POST['utente']);
 			$s->bindValue(':mail', $_POST['mail']);
+			$s->bindValue(':password', md5($_POST['password']));
 			$s->execute();
 		} catch (PDOException $e) {
 			$error = 'Errore nel recupero dei dati da eliminare' . $e;
 			include 'error.html.php';
 			exit();				
 		}	
+
+		$utenteid = $pdo->lastInsertId();
+
+		try {
+			$sql = 'INSERT INTO utentiruoli SET
+					utenteid = :utenteid,
+					ruoloid = :ruoloid';
+			$s = $pdo->prepare($sql);
+			$s->bindValue(':utenteid', $utenteid);
+			$s->bindValue(':ruoloid', $_POST['ruolo'] );
+			$s->execute();
+		} catch (PDOException $e) {
+			$error = 'Errore nell\'associazione del ruolo utente '. $e;
+			include 'error.html.php';
+			exit();				
+		}			
+
 		header('Location: .');
 		exit();
 	}
 
-
-
 	if (isset($_POST['action']) and $_POST['action'] == 'modifica') {
-
+		//recupero nome, mail e id
 		try {
-			$sql = 'SELECT id, utente, mail FROM utenti WHERE id = :id';
+			$sql = 'SELECT id, utente, mail, password FROM utenti WHERE id = :id';
 			$s = $pdo->prepare($sql);
 			$s->bindValue(':id', $_POST['id']);
 			$s->execute();			
@@ -68,11 +98,40 @@
 		}
 
 		$row = $s->fetch();
+
+		//recupero i ruoli
+		try {
+			$sql = 'SELECT id FROM ruoli';
+			$s = $pdo->prepare($sql);
+			$s->execute();
+		} catch (PDOException $e){
+			$error = 'Errore nel recupero dei ruoli' . $e;
+			include 'error.html.php';
+			exit();			
+		}
+		
+		foreach ($s as $row2) {
+			$ruoli[] = array('id' => $row2['id']);
+		}		
+
+		try {
+			$sql = 'SELECT utenteid, ruoloid FROM utentiruoli WHERE utenteid = :id';
+			$s = $pdo->prepare($sql);
+			$s->bindValue(':id', $_POST['id']);
+			$s->execute();			
+		} catch (PDOException $e) {
+			$error = 'Errore nel recupero degli ID utenti' . $e;
+			include 'error.html.php';
+			exit();		
+		}
+
+		$ruoloid = $s->fetch();
 		
 		$pagetitle = 'Modifica utente';
 		$action = 'editform';
 		$utente = $row['utente'];
 		$mail = $row['mail'];
+		$password = $row['password'];
 		$id = $row['id'];
 		$button = 'Modifica utente';	
 		
@@ -85,18 +144,35 @@
 		try {
 			$sql = 'UPDATE utenti 
 					SET utente = :utente,
-						mail = :mail 
+						mail = :mail,
+						password = :password 
 					WHERE id = :id';
 			$s = $pdo->prepare($sql);
 			$s->bindValue(':id', $_POST['id']);
 			$s->bindValue(':utente', $_POST['utente']);
 			$s->bindValue(':mail', $_POST['mail']);
+			$s->bindValue(':password', md5($_POST['password']));
 			$s->execute();			
 		} catch (PDOException $e) {
 			$error = 'Errore nel recupero dei dati da eliminare' . $e;
 			include 'error.html.php';
 			exit();					
 		}
+
+		try {
+			$sql = 'UPDATE utentiruoli
+					SET utenteid = :utenteid,
+						ruoloid = :ruoloid 
+					WHERE utenteid = :utenteid';
+			$s = $pdo->prepare($sql);
+			$s->bindValue(':utenteid', $_POST['id']);
+			$s->bindValue(':ruoloid', $_POST['ruolo']);
+			$s->execute();			
+		} catch (PDOException $e) {
+			$error = 'Errore nel recupero dei dati da eliminare' . $e;
+			include 'error.html.php';
+			exit();					
+		}		
 		
   		header('Location: .');
 		exit();
@@ -146,7 +222,7 @@
 			exit();
 		}
 
-		////ELIMINA L'UTENTE
+		//ELIMINA L'UTENTE
 		try {
 			$sql = 'DELETE FROM utenti WHERE id = :id';
 			$s = $pdo->prepare($sql);
@@ -157,8 +233,20 @@
 			include 'error.html.php';
 			exit();
 		}
+
+		//ELIMINA I DATI DALLA TB UTENTIRUOLI
+		try {
+			$sql = 'DELETE FROM utentiruoli WHERE utenteid = :id';
+			$s = $pdo->prepare($sql);
+			$s->bindValue(':id', $_POST['id']);
+			$s->execute();
+		} catch (PDOExeption $e){
+			$error = 'Errore nell\' eliminazione dei dati in utentiruoli' . $e;
+			include 'error.html.php';
+			exit();
+		}
   		header('Location: .');
-  		exit();
+  		exit();  		
 	}
 
 	//VISUALIZZA GLI UTENTI NELLA PAGINA UTENTI

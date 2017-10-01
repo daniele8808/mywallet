@@ -8,3 +8,8 @@
 	//$spese = array();
 
 	session_start();
+	$user = $_SESSION['user'] = '';
+	$_SESSION['loggedIn'] = '';
+	$_SESSION['mail'] = '';
+	$_SESSION['password'] = '';	
+	

@@ -1,4 +1,3 @@
-<?php include $_SERVER['DOCUMENT_ROOT'] . $root .'/includes/access.inc.php' ; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,21 +17,17 @@
 </head>
 <body>
 <h3>ADMIN PANEL</h3>
-	<!-- <?php echo'Benvenuto' .$utente_loggato. "."; ?>
-	<br>
-	<?php echo $GLOBALS['utente_loggato']; ?>
-	<br>
- -->
-	<?php //print_r( $GLOBALS); ?>
-	<?php //echo $_POST['descrizione']; ?>
-<div>
 
-<p><a href="spese">GESTISCI SPESE</a></p>
-<p><a href="categorie">GESTISCI CATEGORIA</a></p>
-<p><a href="utenti">GESTISCI UTENTI</a></p>
-<span><a href="../">ESCI</a></span>
-<br><br>
-	<?php include 'logout.html.php'; ?>
+<?php if(isset($_SESSION['mail'])): ?>
+	<?php echo "Ciao ". $_SESSION['mail']; ?>
+<?php endif ?>
+
+<div>
+	<p><a href="spese">GESTISCI SPESE</a></p>
+	<p><a href="categorie">GESTISCI CATEGORIA</a></p>
+	<p><a href="utenti">GESTISCI UTENTI</a></p>
+	<span><a href="../">ESCI</a></span>
+	<br><br>
 </div>
 
 
@@ -64,8 +59,6 @@
  		<?php include $_SERVER['DOCUMENT_ROOT'] . $root . '/includes/footer.inc.php';
 			//include 'logout.html.php';
  		?>
-
-
  	
 </body>
 </html>

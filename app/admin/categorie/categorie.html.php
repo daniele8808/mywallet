@@ -38,6 +38,7 @@
 		</table>
 
 	<p><a href="..">Torna indietro</a></p>
+ 	<?php include '../logout.html.php'; ?>
 	
 </body>
 </html>

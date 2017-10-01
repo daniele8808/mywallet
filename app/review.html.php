@@ -16,6 +16,7 @@
 	</style>		
 </head>
 <body>
+	<?php  //print_r($_SESSION); ?>
 		<h2>MY WALLET APP</h2>
 		<br>
 		<p>ECCO LE SPESE DELLA GIORNATA:</p>

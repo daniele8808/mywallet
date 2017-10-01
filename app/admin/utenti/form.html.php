@@ -19,6 +19,23 @@
  			<label for="mail">Mail: <input type="text" name="mail" id="mail" value="<?php htmlout($mail); ?>"></label>
  		</div>
  		<div>
+ 			<label for="ruoli">Ruolo:
+ 				<select name="ruolo" id="ruolo">
+ 					<option value="">seleziona</option>
+ 					<?php foreach($ruoli as $ruolo): ?>
+ 						<option value="<?php echo($ruolo['id']); ?>" <?php if($ruolo['id'] == $ruoloid['ruoloid']) { echo " selected";}?> >
+ 							<?php echo($ruolo['id']); ?>		
+ 						</option>
+ 						<?php endforeach; ?>
+ 				</select>
+ 				
+ 			</label>
+ 		</div>
+ 		<div>
+ 			<label for="password">Password: <input size="35" type="text" name="password" id="password" value="<?php htmlout($password); ?>"></label> 			
+ 		</div>
+ 		<br>
+ 		<div>
  			<input type="hidden" name="id" value="<?php htmlout($id); ?>">
  			<input type="submit" value="<?php htmlout($button); ?>">
  		</div>

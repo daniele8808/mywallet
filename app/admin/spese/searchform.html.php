@@ -43,7 +43,8 @@
  		</div>
 
 	<p><a href="..">Torna indietro</a></p>
-
  	</form>
+ 	<?php include '../logout.html.php'; ?>
+
  </body>
  </html>
